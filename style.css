@@ -1,24 +1,150 @@
 @charset "UTF-8";
+:root {
+    --ksfn-blue: #3b82f6;       /* クリア画面と同じ爽やかな青 */
+    --ksfn-dark-blue: #1d4ed8;  /* メインの濃い青 */
+    --accent-red: #e11d48;      /* アクセントの赤 */
+    --accent-orange: #f97316;   /* スタートボタンの目立つオレンジ */
+    --text-color: #1e293b;
+}
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'M PLUS Rounded 1c', "ヒラギノ角ゴ ProN", "Meiryo", sans-serif;
+    background-color: var(--ksfn-blue); /* 青基調の背景 */
+    color: var(--text-color);
+    line-height: 1.6;
+}
 #All {
-  min-height: 100vh;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    min-height: 100vh;
+    padding: 20px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
-
+/* メイン説明カード */
+.quiz-card {
+    background: #ffffff;
+    width: 100%;
+    max-width: 440px; /* スマホに最適なカード幅 */
+    border-radius: 24px;
+    padding: 24px 16px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+/* ヘッダー */
+.quiz-header {
+    margin-bottom: 16px;
+}
+.badge {
+    display: inline-block;
+    background: var(--ksfn-dark-blue);
+    color: #ffffff;
+    font-weight: 900;
+    font-size: 13px;
+    padding: 4px 16px;
+    border-radius: 20px;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
 h1 {
-	font-size:80px;
+    font-size: 22px;
+    font-weight: 900;
+    margin: 0;
+    color: var(--ksfn-dark-blue);
+    line-height: 1.5;
 }
-p{
-	font-size:40px;
+/* 説明テキスト */
+.instruction-box p {
+    font-size: 17px;
+    font-weight: 800;
+    margin: 10px 0;
+    color: #334155;
 }
-button{
-	font-size:40px;
+.instruction-box p.highlight-p {
+    color: var(--accent-red);
 }
-div{
-	text-align:center;
+.instruction-box p.reward-p {
+    color: #b45309;
+    background-color: #fef3c7;
+    padding: 8px;
+    border-radius: 12px;
+    border: 2px dashed #f59e0b;
 }
-rt{
-	font-size:20px;
+/* ふりがな（ルビ）を見やすく調整 */
+ruby {
+    ruby-position: over;
+}
+rt {
+    font-size: 11px;
+    font-weight: 800;
+    color: #475569;
+}
+/* マーカー画像グリッド */
+.marker-container {
+    margin: 16px 0;
+    display: flex;
+    justify-content: center;
+}
+.marker-table {
+    margin: 0 auto;
+    border-collapse: separate;
+    border-spacing: 8px;
+}
+.marker-table td {
+    background: #f1f5f9;
+    border: 2px solid #cbd5e1;
+    border-radius: 12px;
+    padding: 6px;
+    width: 110px;
+    height: 110px;
+    vertical-align: middle;
+}
+.marker-table img {
+    max-width: 100%;
+    max-height: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+/* スタートボタン */
+.button-container {
+    margin: 20px 0 12px 0;
+}
+.start-btn {
+    background: linear-gradient(135deg, #f97316, #ea580c);
+    color: #ffffff;
+    font-size: 26px;
+    font-weight: 900;
+    padding: 12px 48px;
+    border: none;
+    border-radius: 50px;
+    box-shadow: 0 6px 0px #b45309, 0 10px 20px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    transition: all 0.1s ease;
+    width: 85%;
+    max-width: 280px;
+}
+.start-btn:active {
+    transform: translateY(4px);
+    box-shadow: 0 2px 0px #b45309, 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+/* 注意書き */
+.notice-p {
+    font-size: 12px;
+    font-weight: 700;
+    color: #64748b;
+    margin-top: 8px;
+}
+/* フッター */
+footer {
+    font-size: 12px;
+    color: #ffffff;
+    margin-top: 16px;
+    text-align: center;
+    font-weight: 700;
+    opacity: 0.9;
 }
