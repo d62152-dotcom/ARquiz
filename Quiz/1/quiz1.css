@@ -1,169 +1,80 @@
-body {
-    font-family: Arial, sans-serif;
-    background-image: url("./../gaikannoassyuku.png");
-    background-size: cover;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
-  }
-  
-  .container {
-    max-width: 800px;
-    width: 100%;
-    margin: 0 auto;
-    text-align: center;
-    padding: 50px;
-  }
-  
-  /* 全問題数表示エリア */
-  .quiz-info {
-    font-size: 1.2rem;
-    color: white;
-    margin-bottom: 20px;
-    max-width: 100px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 5px;
-    border: 2px solid #333;
-    border-radius: 5px;
-    background-color: dimgrey;
-  }
-  
-  .quiz-container,
-  .result-section,
-  .final-section {
-    display: none;
-    margin: 20px auto;
-  }
+/* ARカメラ背景 */
+#ar-camera-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  overflow: hidden;
+}
 
-  /* ★追加: スタート画面用のスタイル設定 */
-  #start-section {
-    margin: 20px auto;
-  }
+/* 前面のUIレイヤー */
+#ar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none; /* 下のカメラ操作を邪魔しない設定 */
+}
 
-  /* ★追加: 「問題に進む」ボタンのスタイル（既存のボタンとデザインを統一） */
-  #start-btn {
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #e0e0e0;
-    text-align: center;
-    cursor: pointer;
-    border: 2px solid black;
-    border-radius: 10px;
-    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
-    transition: background-color 0.3s;
-    max-width: 300px;
-    margin-left: auto;
-    margin-right: auto;
-  }
+/* 認識時に表示するポップアップカード */
+.ar-card {
+  pointer-events: auto; /* ボタンクリックを有効化 */
+  background: rgba(255, 255, 255, 0.9); /* 半透明の白背景 */
+  padding: 25px 30px;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  max-width: 80%;
+  animation: popIn 0.3s ease-out;
+}
 
-  #start-btn:hover {
-    background-color: #d0d0d0;
-  }
+.detect-msg {
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  color: #333;
+}
 
-  .question-number {
-    font-weight: bold;
-    margin-bottom: 10px;
+/* アクションボタン共通 */
+.action-btn {
+  display: block;
+  width: 100%;
+  min-width: 200px;
+  padding: 12px 20px;
+  background-color: #ff9800; /* 目立つアクセントカラー */
+  color: white;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: transform 0.1s, background-color 0.2s;
+}
+
+.action-btn:hover {
+  background-color: #e68a00;
+}
+
+.action-btn:active {
+  transform: scale(0.98);
+}
+
+/* カードの出現アニメーション */
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
   }
-  
-  .question {
-    font-weight: bold;
-    margin-bottom: 10px;
-    padding: 15px;
-    border: 2px solid black;
-    border-radius: 10px;
-    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
-    background-color: #ffffff;
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
-  
-  .grid-container {
-    display: grid;
-    /*grid-template-columns: 1fr 1fr;*/
-    grid-gap: 10px;
-  }
-  
-  .choice {
-    padding: 15px;
-    background-color: #ffffff;
-    text-align: center;
-    cursor: pointer;
-    border: 2px solid black;
-    border-radius: 10px;
-    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
-    transition: background-color 0.3s;
-  }
-  
-  .choice:hover {
-    background-color: #d0d0d0;
-  }
-  
-  .result-section {
-    padding: 20px;
-    border: 2px solid black;
-    border-radius: 10px;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
-    background-color: #f1f1f1;
-  }
-  
-  #answer-result {
-    font-size: 2rem;
-    margin-bottom: 10px;
-  }
-  
-  .correct {
-    color: green;
-  }
-  
-  .wrong {
-    color: red;
-  }
-  
-  #next-question {
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #e0e0e0;
-    text-align: center;
-    cursor: pointer;
-    border: 2px solid black;
-    border-radius: 10px;
-    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
-    transition: background-color 0.3s;
-    max-width: 300px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  #next-question:hover {
-    background-color: #d0d0d0;
-  }
-  
-  .final-section {
-    padding: 20px;
-    border: 2px solid black;
-    border-radius: 10px;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
-    background-color: #f9f9f9;
-    margin: 20px auto;
-    max-width: 800px;
-  }
-  
-  #restart-quiz {
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #e0e0e0;
-    text-align: center;
-    cursor: pointer;
-    border: 2px solid black;
-    border-radius: 10px;
-    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
-    transition: background-color 0.3s;
-    max-width: 300px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  #restart-quiz:hover {
-    background-color: #d0d0d0;
-  }
+}
