@@ -6,28 +6,38 @@
   <title>クイズ1</title>
   <link rel="stylesheet" href="quiz1.css">
   <!-- kuromoji CDN -->
-<script src="https://cdn.jsdelivr.net/npm/kuromoji@0.1.2/build/kuromoji.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/kuromoji@0.1.2/build/kuromoji.js"></script>
   <script src="quiz1.js" defer></script>
 </head>
 <body>
   <div class="container" id="container">
     <div class="quiz-info">Q<span id="total-questions">1</span></div>
     <h1>クイズ</h1>
+
+    <!-- ★追加: 「問題に進む」ボタンを表示するスタートエリア -->
+    <div id="start-section">
+      <div id="start-btn" onclick="startQuiz()">
+        <ruby>問題<rt>もんだい</rt></ruby>に<ruby>進<rt>すす</rt></ruby>む
+      </div>
+    </div>
+
     <div class="quiz-container" id="quiz-container">
       <div class="question-number" id="question-number"></div>
       <div class="question" id="question"></div>
       <div class="grid-container" id="choices-container"></div>
     </div>
+
     <div class="result-section" id="answer-section">
-      <h2>
+      <h2> 
       <ruby>回答<rt>かいとう</rt></ruby>
       <ruby>結果<rt>けっか</rt></ruby>
       </h2>
       <p id="answer-result"></p>
       <div id="restart-quiz" onclick="endCord()">
         ARに<ruby>戻<rt>もど</rt></ruby>る
+      </div>
     </div>
-    </div>
+
     <div id="final-result" class="final-section">
       <h2>
       <ruby>最終<rt>さいしゅう</rt></ruby>
@@ -35,8 +45,9 @@
       </h2>
       <p id="score"></p>
       <div id="restart-quiz" onclick="endCord()">ARに<ruby>戻<rt>もど</rt></ruby>る
+      </div>
     </div>
-  </div>
-  <!-- quiz1.js は kuromoji の読み込み後に defer で呼ぶ -->
+
+  </div> <!-- ★元コードで抜けいていた閉じタグも補完 -->
 </body>
-</html> 
+</html>
