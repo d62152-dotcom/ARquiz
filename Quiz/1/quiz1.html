@@ -3,23 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>クイズ1</title>
-  <link rel="stylesheet" href="quiz1.css">
-  <!-- kuromoji CDN -->
+  <title>AR クイズ画面</title>
+  <link rel="stylesheet" href="ar_quiz.css">
   <script src="https://cdn.jsdelivr.net/npm/kuromoji@0.1.2/build/kuromoji.js"></script>
   <script src="quiz1.js" defer></script>
 </head>
 <body>
-  <div class="container" id="container">
+
+  <!-- 1. ARカメラ映像エリア (背景) -->
+  <div id="ar-camera-container">
+    <!-- ここにAR.jsやMindARなどのカメラ<video>/<canvas>が入ります -->
+  </div>
+
+  <!-- 2. AR画面の上に重ねるUIレイヤー (前面) -->
+  <div id="ar-overlay">
+    <!-- マーカートリガーで表示される「問題に進む」ポップアップ -->
+    <div id="start-card" class="ar-card" style="display: none;">
+      <p class="detect-msg">ターゲットを認識しました！</p>
+      <button type="button" id="start-btn" class="action-btn" onclick="startQuizFromAR()">
+        <ruby>問題<rt>もんだい</rt></ruby>に<ruby>進<rt>すす</rt></ruby>む
+      </button>
+    </div>
+  </div>
+
+  <!-- 3. クイズ本体（ボタン押下後に表示） -->
+  <div class="container" id="container" style="display: none;">
     <div class="quiz-info">Q<span id="total-questions">1</span></div>
     <h1>クイズ</h1>
-
-    <!-- ★追加: 「問題に進む」ボタンを表示するスタートエリア -->
-    <div id="start-section">
-      <div id="start-btn" onclick="startQuiz()">
-        <ruby>問題<rt>もんだい</rt></ruby>に<ruby>進<rt>すす</rt></ruby>む
-      </div>
-    </div>
 
     <div class="quiz-container" id="quiz-container">
       <div class="question-number" id="question-number"></div>
@@ -29,25 +39,26 @@
 
     <div class="result-section" id="answer-section">
       <h2> 
-      <ruby>回答<rt>かいとう</rt></ruby>
-      <ruby>結果<rt>けっか</rt></ruby>
+        <ruby>回答<rt>かいとう</rt></ruby>
+        <ruby>結果<rt>けっか</rt></ruby>
       </h2>
       <p id="answer-result"></p>
-      <div id="restart-quiz" onclick="endCord()">
+      <button type="button" class="action-btn" onclick="endCord()">
         ARに<ruby>戻<rt>もど</rt></ruby>る
-      </div>
+      </button>
     </div>
 
     <div id="final-result" class="final-section">
       <h2>
-      <ruby>最終<rt>さいしゅう</rt></ruby>
-      <ruby>結果<rt>けっか</rt></ruby>
+        <ruby>最終<rt>さいしゅう</rt></ruby>
+        <ruby>結果<rt>けっか</rt></ruby>
       </h2>
       <p id="score"></p>
-      <div id="restart-quiz" onclick="endCord()">ARに<ruby>戻<rt>もど</rt></ruby>る
-      </div>
+      <button type="button" class="action-btn" onclick="endCord()">
+        ARに<ruby>戻<rt>もど</rt></ruby>る
+      </button>
     </div>
+  </div>
 
-  </div> <!-- ★元コードで抜けいていた閉じタグも補完 -->
 </body>
 </html>
