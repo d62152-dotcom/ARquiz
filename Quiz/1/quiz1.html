@@ -3,30 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AR クイズ画面</title>
-  <link rel="stylesheet" href="ar_quiz.css">
+  <title>クイズ1</title>
+  <link rel="stylesheet" href="quiz1.css">
+  <!-- kuromoji CDN -->
   <script src="https://cdn.jsdelivr.net/npm/kuromoji@0.1.2/build/kuromoji.js"></script>
   <script src="quiz1.js" defer></script>
 </head>
 <body>
 
-  <!-- 1. ARカメラ映像エリア (背景) -->
-  <div id="ar-camera-container">
-    <!-- ここにAR.jsやMindARなどのカメラ<video>/<canvas>が入ります -->
-  </div>
+  <!-- ARカメラ映像表示エリア（背景） -->
+  <div id="ar-camera-container"></div>
 
-  <!-- 2. AR画面の上に重ねるUIレイヤー (前面) -->
+  <!-- AR画面の上に重ねるUIレイヤー（前面） -->
   <div id="ar-overlay">
-    <!-- マーカートリガーで表示される「問題に進む」ポップアップ -->
+    <!-- 画像認識時に表示される「問題に進む」ポップアップ -->
     <div id="start-card" class="ar-card" style="display: none;">
       <p class="detect-msg">ターゲットを認識しました！</p>
-      <button type="button" id="start-btn" class="action-btn" onclick="startQuizFromAR()">
+      <div id="start-btn" onclick="startQuizFromAR()">
         <ruby>問題<rt>もんだい</rt></ruby>に<ruby>進<rt>すす</rt></ruby>む
-      </button>
+      </div>
     </div>
   </div>
 
-  <!-- 3. クイズ本体（ボタン押下後に表示） -->
+  <!-- クイズ本体（「問題に進む」ボタン押下後に表示） -->
   <div class="container" id="container" style="display: none;">
     <div class="quiz-info">Q<span id="total-questions">1</span></div>
     <h1>クイズ</h1>
@@ -43,9 +42,9 @@
         <ruby>結果<rt>けっか</rt></ruby>
       </h2>
       <p id="answer-result"></p>
-      <button type="button" class="action-btn" onclick="endCord()">
+      <div id="restart-quiz" onclick="endCord()">
         ARに<ruby>戻<rt>もど</rt></ruby>る
-      </button>
+      </div>
     </div>
 
     <div id="final-result" class="final-section">
@@ -54,9 +53,9 @@
         <ruby>結果<rt>けっか</rt></ruby>
       </h2>
       <p id="score"></p>
-      <button type="button" class="action-btn" onclick="endCord()">
+      <div id="restart-quiz" onclick="endCord()">
         ARに<ruby>戻<rt>もど</rt></ruby>る
-      </button>
+      </div>
     </div>
   </div>
 
