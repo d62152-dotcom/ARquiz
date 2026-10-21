@@ -1,209 +1,201 @@
 body {
-  font-family: Arial, sans-serif;
-  background-image: url("./../gaikannoassyuku.png");
-  background-size: cover;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  margin: 0;
+    font-family: Arial, sans-serif;
+    background-image: url("./../gaikannoassyuku.png");
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
 }
 
-/* ARカメラ映像エリア */
+/* ★追加: ARカメラ表示エリア */
 #ar-camera-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 1;
-  overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    overflow: hidden;
 }
 
-/* AR画面上の重ね表示UIレイヤー */
+/* ★追加: カメラ画面上の重ね表示レイヤー */
 #ar-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 10;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  pointer-events: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
 }
 
-/* 画像認識時のポップアップカード */
-.ar-card {
-  pointer-events: auto;
-  background: rgba(255, 255, 255, 0.95);
-  padding: 25px 30px;
-  border-radius: 15px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-  text-align: center;
-  max-width: 80%;
+/* ★追加: 画像認識時に浮き出るカード */
+#start-card {
+    pointer-events: auto;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 20px 30px;
+    border-radius: 10px;
+    border: 2px solid black;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
 }
 
-.detect-msg {
-  font-weight: bold;
-  font-size: 1.1rem;
-  margin-top: 0;
-  margin-bottom: 15px;
-  color: #333;
-}
-
-/* 「問題に進む」ボタン */
+/* ★追加: カメラ画面上の「問題に進む」ボタン */
 #start-btn {
-  padding: 12px 20px;
-  background-color: #e0e0e0;
-  text-align: center;
-  cursor: pointer;
-  border: 2px solid black;
-  border-radius: 10px;
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
-  transition: background-color 0.3s;
-  min-width: 200px;
-  margin: 0 auto;
-  font-weight: bold;
+    padding: 10px 20px;
+    background-color: #e0e0e0;
+    text-align: center;
+    cursor: pointer;
+    border: 2px solid black;
+    border-radius: 10px;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
+    transition: background-color 0.3s;
+    font-weight: bold;
+    min-width: 180px;
+    margin: 0 auto;
 }
 
 #start-btn:hover {
-  background-color: #d0d0d0;
+    background-color: #d0d0d0;
 }
 
 .container {
-  position: relative;
-  z-index: 20;
-  max-width: 800px;
-  width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  padding: 50px;
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    padding: 50px;
+    position: relative;
+    z-index: 20;
 }
 
 /* 全問題数表示エリア */
 .quiz-info {
-  font-size: 1.2rem;
-  color: white;
-  margin-bottom: 20px;
-  max-width: 100px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 5px;
-  border: 2px solid #333;
-  border-radius: 5px;
-  background-color: dimgrey;
+    font-size: 1.2rem;
+    color: white;
+    margin-bottom: 20px;
+    max-width: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5px;
+    border: 2px solid #333;
+    border-radius: 5px;
+    background-color: dimgrey;
 }
 
 .quiz-container,
 .result-section,
 .final-section {
-  display: none;
-  margin: 20px auto;
+    display: none;
+    margin: 20px auto;
 }
 
 .question-number {
-  font-weight: bold;
-  margin-bottom: 10px;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
 .question {
-  font-weight: bold;
-  margin-bottom: 10px;
-  padding: 15px;
-  border: 2px solid black;
-  border-radius: 10px;
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
-  background-color: #ffffff;
+    font-weight: bold;
+    margin-bottom: 10px;
+    padding: 15px;
+    border: 2px solid black;
+    border-radius: 10px;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
+    background-color: #ffffff;
 }
 
 .grid-container {
-  display: grid;
-  /*grid-template-columns: 1fr 1fr;*/
-  grid-gap: 10px;
+    display: grid;
+    /*grid-template-columns: 1fr 1fr;*/
+    grid-gap: 10px;
 }
 
 .choice {
-  padding: 15px;
-  background-color: #ffffff;
-  text-align: center;
-  cursor: pointer;
-  border: 2px solid black;
-  border-radius: 10px;
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
-  transition: background-color 0.3s;
+    padding: 15px;
+    background-color: #ffffff;
+    text-align: center;
+    cursor: pointer;
+    border: 2px solid black;
+    border-radius: 10px;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
+    transition: background-color 0.3s;
 }
 
 .choice:hover {
-  background-color: #d0d0d0;
+    background-color: #d0d0d0;
 }
 
 .result-section {
-  padding: 20px;
-  border: 2px solid black;
-  border-radius: 10px;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
-  background-color: #f1f1f1;
+    padding: 20px;
+    border: 2px solid black;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    background-color: #f1f1f1;
 }
 
 #answer-result {
-  font-size: 2rem;
-  margin-bottom: 10px;
+    font-size: 2rem;
+    margin-bottom: 10px;
 }
 
 .correct {
-  color: green;
+    color: green;
 }
 
 .wrong {
-  color: red;
+    color: red;
 }
 
 #next-question {
-  margin-top: 20px;
-  padding: 10px;
-  background-color: #e0e0e0;
-  text-align: center;
-  cursor: pointer;
-  border: 2px solid black;
-  border-radius: 10px;
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
-  transition: background-color 0.3s;
-  max-width: 300px;
-  margin-left: auto;
-  margin-right: auto;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #e0e0e0;
+    text-align: center;
+    cursor: pointer;
+    border: 2px solid black;
+    border-radius: 10px;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
+    transition: background-color 0.3s;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #next-question:hover {
-  background-color: #d0d0d0;
+    background-color: #d0d0d0;
 }
 
 .final-section {
-  padding: 20px;
-  border: 2px solid black;
-  border-radius: 10px;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
-  background-color: #f9f9f9;
-  margin: 20px auto;
-  max-width: 800px;
+    padding: 20px;
+    border: 2px solid black;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    background-color: #f9f9f9;
+    margin: 20px auto;
+    max-width: 800px;
 }
 
 #restart-quiz {
-  margin-top: 20px;
-  padding: 10px;
-  background-color: #e0e0e0;
-  text-align: center;
-  cursor: pointer;
-  border: 2px solid black;
-  border-radius: 10px;
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
-  transition: background-color 0.3s;
-  max-width: 300px;
-  margin-left: auto;
-  margin-right: auto;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #e0e0e0;
+    text-align: center;
+    cursor: pointer;
+    border: 2px solid black;
+    border-radius: 10px;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
+    transition: background-color 0.3s;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #restart-quiz:hover {
-  background-color: #d0d0d0;
+    background-color: #d0d0d0;
 }

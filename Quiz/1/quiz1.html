@@ -11,21 +11,22 @@
 </head>
 <body>
 
-  <!-- ARカメラ映像表示エリア（背景） -->
+  <!-- ARカメラ画面エリア（最背面） -->
   <div id="ar-camera-container"></div>
 
-  <!-- AR画面の上に重ねるUIレイヤー（前面） -->
+  <!-- ★追加: AR画面の上に重なるUIエリア -->
   <div id="ar-overlay">
-    <!-- 画像認識時に表示される「問題に進む」ポップアップ -->
-    <div id="start-card" class="ar-card" style="display: none;">
-      <p class="detect-msg">ターゲットを認識しました！</p>
+    <!-- 画像認識時に表示されるポップアップ -->
+    <div id="start-card" style="display: none;">
+      <p style="font-weight: bold; margin-bottom: 15px;">ターゲットを認識しました！</p>
+      <!-- カメラ画面上に出す「問題に進む」ボタン -->
       <div id="start-btn" onclick="startQuizFromAR()">
         <ruby>問題<rt>もんだい</rt></ruby>に<ruby>進<rt>すす</rt></ruby>む
       </div>
     </div>
   </div>
 
-  <!-- クイズ本体（「問題に進む」ボタン押下後に表示） -->
+  <!-- クイズ本体（最初は非表示にし、「問題に進む」ボタン押下で表示） -->
   <div class="container" id="container" style="display: none;">
     <div class="quiz-info">Q<span id="total-questions">1</span></div>
     <h1>クイズ</h1>
@@ -38,8 +39,8 @@
 
     <div class="result-section" id="answer-section">
       <h2> 
-        <ruby>回答<rt>かいとう</rt></ruby>
-        <ruby>結果<rt>けっか</rt></ruby>
+      <ruby>回答<rt>かいとう</rt></ruby>
+      <ruby>結果<rt>けっか</rt></ruby>
       </h2>
       <p id="answer-result"></p>
       <div id="restart-quiz" onclick="endCord()">
@@ -49,12 +50,11 @@
 
     <div id="final-result" class="final-section">
       <h2>
-        <ruby>最終<rt>さいしゅう</rt></ruby>
-        <ruby>結果<rt>けっか</rt></ruby>
+      <ruby>最終<rt>さいしゅう</rt></ruby>
+      <ruby>結果<rt>けっか</rt></ruby>
       </h2>
       <p id="score"></p>
-      <div id="restart-quiz" onclick="endCord()">
-        ARに<ruby>戻<rt>もど</rt></ruby>る
+      <div id="restart-quiz" onclick="endCord()">ARに<ruby>戻<rt>もど</rt></ruby>る
       </div>
     </div>
   </div>

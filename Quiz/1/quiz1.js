@@ -9,12 +9,11 @@ function initKuromojiAndQuiz() {
     tokenizer = t;
     console.log("Kuromoji ready ✅");
 
-    // 画像が認識された体で動作確認したい場合は以下を実行できます
-    // onARTargetFound();
+    // ★自動での loadQuestion() 呼び出しは解除し、ボタン押下時に移動させます
   });
 }
 
-// ARマーカー/画像を認識した際に呼び出す関数
+// ★追加: 画像を認識した際にカメラ画面上に「問題に進む」ボタンを表示する関数
 function onARTargetFound() {
   const startCard = document.getElementById("start-card");
   if (startCard) {
@@ -22,16 +21,14 @@ function onARTargetFound() {
   }
 }
 
-// 「問題に進む」ボタンを押した際に実行される関数
+// ★追加: カメラ画面上の「問題に進む」ボタンを押したときの処理
 function startQuizFromAR() {
-  // 1. ARオーバーレイ画面とカメラ領域を隠す
+  // カメラ画面と重ね表示レイヤーを非表示にする
   document.getElementById("ar-overlay").style.display = "none";
   document.getElementById("ar-camera-container").style.display = "none";
 
-  // 2. クイズ画面全体を表示する
+  // クイズ画面を表示して問題を読み込む
   document.getElementById("container").style.display = "block";
-
-  // 3. クイズを開始
   loadQuestion();
 }
 
@@ -235,7 +232,7 @@ function escapeHtml(s) {
   })[c]);
 }
 
-// グローバル空間への各種関数の公開
+// 追加した関数と既存関数のグローバル公開
 window.onARTargetFound = onARTargetFound;
 window.startQuizFromAR = startQuizFromAR;
 window.nextQuestion = nextQuestion;
